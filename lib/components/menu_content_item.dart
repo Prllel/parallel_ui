@@ -1,10 +1,9 @@
 import 'package:flutter/widgets.dart';
 
-class MenuBaseItem extends StatelessWidget {
-  
+class MenuContentItem extends StatelessWidget {
   final Icon suffixIcon;
   final Text text;
-  MenuBaseItem({this.text, this.suffixIcon});
+  MenuContentItem({this.text, this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {

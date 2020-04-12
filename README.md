@@ -8,5 +8,4 @@ Parallel UI is a set of UI Components for flutter.
 
 ### TODO
 - Improve README
-- Adding Testing
 - Adding more components

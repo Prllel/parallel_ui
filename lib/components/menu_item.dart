@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:parallel_ui/components/menu_base_item.dart';
+import 'package:parallel_ui/components/common.dart';
 
-class MenuItem extends StatelessWidget {
+class MenuItem extends StatelessWidget with MenuItemMixin {
   final String text;
   final TextStyle style;
   final Icon suffixIcon;
@@ -9,16 +9,10 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 8.0, 16.0, 8.0),
-      child: MenuBaseItem(
-        text: Text(text,
-            style: TextStyle(
-              fontSize: 14.0,
-              color: Color(0xFFFFFFFF),
-            ).merge(style)),
-        suffixIcon: suffixIcon,
-      ),
-    );
+    return buildMenuItem(
+      context: context,
+      defaultFontSize: 14.0,
+      defaultFontColor: Color(0xFFFFFFFF),
+      defaultPadding: const EdgeInsets.fromLTRB(0.0, 8.0, 16.0, 8.0));
   }
 }

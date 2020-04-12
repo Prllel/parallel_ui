@@ -17,6 +17,7 @@ class MenuDrawerState extends State<MenuDrawer>
   AnimationController _animController;
   CurvedAnimation shiftAnimation;
   Animation<double> scaleAnimation;
+  final menuScrollKey = GlobalKey();
 
   @override
   void initState() {
@@ -25,7 +26,8 @@ class MenuDrawerState extends State<MenuDrawer>
 
     shiftAnimation =
         CurvedAnimation(parent: _animController, curve: Curves.easeInOut);
-    scaleAnimation = Tween<double>(begin: 1.0, end: 0.5).animate(
+
+    scaleAnimation = Tween<double>(begin: 1.0, end: 0.7).animate(
         CurvedAnimation(parent: _animController, curve: Curves.easeInOut));
 
     widget.controller.addListener(() {
@@ -42,7 +44,6 @@ class MenuDrawerState extends State<MenuDrawer>
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
-    final h = MediaQuery.of(context).size.height;
     return AnimatedBuilder(
       animation: _animController,
       child: widget.child,
@@ -53,7 +54,7 @@ class MenuDrawerState extends State<MenuDrawer>
               children: <Widget>[
                 Transform.scale(
                     scale: scaleAnimation.value,
-                    origin: Offset(-(h*.5), 0.0),
+                    origin: Offset(-(w * .5), 0.0),
                     child: child),
                 _buildMenu(),
               ],
@@ -80,11 +81,13 @@ class MenuDrawerState extends State<MenuDrawer>
             child: Align(
               alignment: Alignment.centerRight,
               child: SingleChildScrollView(
+                key: menuScrollKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     SizedBox(height: 100.0),
                     ...(widget.elements ?? []),
+                    SizedBox(height: 100.0,)
                   ],
                 ),
               ),
